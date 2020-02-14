@@ -1,8 +1,8 @@
 version: '3.3'
 services:
   es:
-    image: good-search-es
-    container_name: es01
+    image: good-search-es:0.1
+    container_name: es01-dev
     environment:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
@@ -20,17 +20,6 @@ services:
         hard: -1
     volumes:
       - ./es-data:/usr/share/elasticsearch/data
-      - ./plugins:/usr/share/elasticsearch/plugins
     ports:
       - 9200:9200
       - 9300:9300
-  kibana:
-    container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.3.0
-    environment:
-      ELASTICSEARCH_HOSTS: http://es:9200
-      SERVER_NAME: localhost
-    depends_on:
-      - es
-    ports:
-      - 5601:5601
