@@ -39,7 +39,8 @@ jobs:
       - name: Push image
         run: |
           echo REPOSITORY=${{ github.repository }}
-          IMAGE_ID=docker.pkg.github.com/${REPOSITORY,,}
+          echo REPOSITORY="$REPOSITORY" | tr '[:upper:]' '[:lower:]'
+          IMAGE_ID=docker.pkg.github.com/${REPOSITORY}
 
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
