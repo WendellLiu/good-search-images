@@ -6,7 +6,9 @@ IMAGE_VERSION=$VERSION
 if [ $# -ne 0  ]; then
         flag="${1}"
         if [ "$flag" == "build" ]; then
-                (set -x; docker build --tag="good-search-es:$IMAGE_VERSION" .)
+                (set -x; docker build --tag="wendellliu/good-search-es:$IMAGE_VERSION" .)
+        elif [ "$flag" == "push" ]; then
+                (set -x; docker push wendellliu/good-search-es:$IMAGE_VERSION)
         elif [ "$flag" == "dummy" ]; then
                 echo "dummy ${BASEDIR}"
         fi
